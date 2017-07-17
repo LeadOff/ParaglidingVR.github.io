@@ -168,7 +168,10 @@ h4 b{font-size:18px;text-align:center;font-weight:bolder;}
 
 
 
-#mySidenav{position:fixed;left:0px;top:30px;}
+#mySidenav{position:fixed;left:0px;top:30px;float:left;display:none;}
+@media only screen and (min-width: 24cm) {
+	#mySidenav {display:block;}
+}
 #mySidenav button {
 	text-align:right;
     position: absolute; /* Position them relative to the browser window */
