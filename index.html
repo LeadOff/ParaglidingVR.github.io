@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {	font-family:Arial;
+	color:black;
+	font-size:13px;
+	border-collapse:collapse;
+	margin:0;padding:0; border:0;
+	font-weight:normal;
+}
+//html{width:21cm;height:29.7cm;min-height:100%;}
+html{padding-bottom:60px;}
+body {	width:100%;height:100%; background-color:black;min-height:100%;}
+.fullW {	width:100%;}
+.fullH {	height:100%;}
+.border {	border:1px solid black;}
+#fr {display:none;}
+#en {display:block;}
+.profil_picture {	width:150px;height:150px;}
+.nom{font-size:18px;}
+.emploirecherche{font-size:18px;}
+.emploirecherche::before{content: "⫷\00a0";color:#f5fdff;}
+.emploirecherche::after{content: "\00a0⫸";color:#f5fdff;}
+.maintable{}
+.center{text-align:center;}
+.leftalign{display:inline-block;text-align:left;}
+.left{padding:0px;}
+.right{padding:0px;border-left:1px solid black;}
+.top{vertical-align:top;}
+.middle{vertical-align:middle;}
+.bottom{vertical-align:bottom;}
+.tbl { width:100%;margin-top:6px;}
+.tbl tr td { padding-left:6px; background-color:white; border-bottom:1px solid lightgrey; padding-bottom:3px;padding-top:3px;padding-right:0px;}
+.tbl tr td:first-of-type {		white-space:nowrap;}
+.tbl tr td:last-of-type {		padding-right:6px;}
+.me{padding-top:6px;}
+.tbl tr:last-of-type td {		border-bottom:0px solid lightgrey;padding-bottom:8px;}
+.titre {						}
+th { 	padding-top:4px;}
+th div { font-size:18px;margin-left:1px;margin-right:1px;margin-bottom:.5px;border-bottom:1px solid black;}
+.maincontainer {}
+.tbl tr:first-of-type th div{position:relative;background:linear-gradient(7deg, white, white, #f5fdff, white, white);}
+.left .tbl tr:first-of-type th:last-of-type div::after { position:absolute; right:-8px; bottom:-10.2px; content: "◖"; font-size:14px;color:black;}
+.right .tbl tr:first-of-type th:first-of-type div::before { position:absolute; left:-8px; bottom:-10.2px; content: "◗"; font-size:14px;color:black;}
+div.tab {
+	max-width:21cm;
+	margin: auto;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+div.tab button:hover {
+    background-color: #91e9ff;
+}
+div.tab button.active{
+    background-color: #f5fdff;
+}
+.tabcontent {
+	background-color:white;
+	max-width:21cm;
+	min-height:100%;
+	margin: auto;
+    display: none;
+    padding: 0px 0px;
+    border: 1px solid #ccc;
+    border-top: none;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+#portfolio{border: 1px solid #91e9ff;}
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.card { text-decoration:none; display:inline-block;vertical-align:top;
+    box-shadow: 2px 4px 8px 2px rgba(0,0,0,0.2);
+    transition: 0.6s;
+    border-radius: 5px; /* 5px rounded corners */
+	margin:20px;
+}
+.card:hover {
+    box-shadow: 2px 4px 12px 6px rgba(145,233,255,0.4);
+}
+.container {
+margin:6px;
+}
+.card img {
+    border-radius: 5px 5px 0 0;vertical-align:top;
+}
+.explain{display:inline-block; width:40%;vertical-align:top;}
+.explain p{padding:12px;}
+.container.webbf::before{
+	content:"wWw";letter-spacing:-8px;font-size:26px;font-weight:bolder;float:left;color:#12aeff;/*#0000EE*/
+	padding:6px;padding-right:14px;
+	background:radial-gradient(circle, #ec652a 0%, #ffff00 65%, #12aeff 66%, #12aeff 69%, white 70%);
+
+}
+.container.androidbf{
+background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Android_robot_2014.svg/200px-Android_robot_2014.svg.png');
+background-size: 68px auto ;
+background-repeat: no-repeat;
+padding-left:80px;
+}
+h4{font-size:16px;font-weight:bold;}
+h4 b{font-size:18px;text-align:center;font-weight:bolder;}
+.rightinfo{float:right;text-align:text-top;padding:6px;}
+.mainpage{
+	background-color:white;
+	min-width:21cm;width:21cm;max-width:21cm;
+	min-height:100%;height:100%;
+	margin:auto;
+}
+.herocontainer{position: relative;
+	height: 100%;
+    margin: 0;
+}
+.hero-image {
+  background-image: url("hirepic.png");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  color: white;
+}
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: black;
+  background-color: #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+
+
+
+#mySidenav{position:fixed;left:0px;top:30px;}
+#mySidenav button {
+	text-align:right;
+    position: absolute; /* Position them relative to the browser window */
+    left: -260px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 15px; /* 15px padding */
+	padding-right: 40px;
+    width: 300px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav button:hover {
+    left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#about0 {
+    top: 20px;
+    background-color: #4CAF50;
+}
+#about1 {
+    top: 80px;
+    background-color: #4CAF50;
+}
+#blog {
+    top: 140px;
+    background-color: #2196F3; /* Blue */
+}
+
+#projects {
+    top: 200px;
+    background-color: #f44336; /* Red */
+}
+
+#contact {
+    top: 260px;
+    background-color: #555 /* Light Black */
+}
+
+</style>
+<style media="print">
+body{background-color:default;}
+.noprint{display:none;}
+.tabcontent{border: none;}
+html{padding-bottom:0px;}
+</style>
+</head>
+
+<body onload="loadit()">
+<div class="mainpage">
+<div class="tab noprint">
+  <button class="tablinks" onclick="openTab(event, 'en')" id="defaultOpen">English</button>
+  <button class="tablinks" onclick="openTab(event, 'fr')">Français</button>
+  <button class="tablinks" onclick="openTab(event, 'portfolio')">Portfolio</button>
+  <button class="tablinks" onclick="openTab(event, 'why')">Why Should I work for you?</button>
+  <button class="tablinks" onclick="openTab(event, 'hire')">Hire me!</button>
+</div>
+<div id="fr" class="tabcontent">
+<table class="maintable fullW fullH">
+	<tr>
+		<td class="left maincontainer fullW fullH">
+			<table class="mainleft fullW fullH ">
+				<tr class="sectionwraper">
+					<td class="section">
+						<div class="emploirecherche center">Développeur - Webmaster</div>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Formations_en_autodidacte tbl">
+							<tr class="titre"><th colspan=3><div>Formations en autodidacte</div></th></tr>
+							<tr><td>Webmaster</td><td colspan=2>Création d'applications et sites web dynamiques</td></tr>
+							<tr><td>Développement Android</td><td colspan=2>Création d'applications et mini jeux</td></tr>
+							<tr><td>Montage audio et vidéo</td><td colspan=2>Participation à divers projets artistiques</td></tr>
+							<tr><td>Animation 3D</td><td colspan=2>Utilisation de Blender 3D afin de réaliser icones, textures et designs, mapping, flyers...</td></tr>
+						</table>
+						<table class="Formations tbl">
+							<tr class="titre"><th colspan=3><div>Formations</div></th></tr>
+							<tr><td>Illustration, Design</td><td colspan=2>Arts appliqués EAAD, Genève</td></tr>
+							<tr><td>Téléprospection commerciale</td><td colspan=2>Excelsia, Genève</td></tr>
+							<tr><td>Économie, Droit, Comptabilité</td><td colspan=2>Maturité (École Moser), Genève</td></tr>
+							<tr><td>License de vol libre</td><td colspan=2>Formation parapente à troinex (Genève)</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Experiences_professionnelles tbl">
+							<tr class="titre"><th colspan=3><div>Expériences professionnelles</div></th></tr>
+							<tr class=comm><td>2016 à 2017</td><td>Cyclomessagerie </td><td>Krick, Genève</td></tr>
+							<tr class=restauration><td>2016</td><td>Serveur / Aide Cuisine </td><td>L'Alhambar, Genève</td></tr>
+							<tr class=restauration><td>2015</td><td>Serveur / Aide Cuisine </td><td>Bains des pâquis, Genève</td></tr>
+							<tr class=construct><td>2015</td><td>Préparateur fruits et légumes </td><td>Migros s.a., Genève</td></tr>
+							<tr class=restauration><td>2014</td><td>Serveur</td><td>La Boursière, Genève</td></tr>
+							<tr class=restauration><td>2014</td><td>Préparations et Cuissons </td><td>Tea Room Le doux péché, Genève</td></tr>
+							<tr class=comm><td>2014 à 2016</td><td>Distribution de Flyers </td><td>Bâtie-Festival, Genève</td></tr>
+							<tr class=creation><td>2014</td><td>Menuisier / Charpentier </td><td>Telqiu Nusret, Genève</td></tr>
+							<tr class=creation><td>2013 à 2014</td><td>Fabrication de meubles sur mesure </td><td>Particuliers</td></tr>
+							<tr class=creation><td>2013 à 2015</td><td>Entretien de jardin </td><td>Particuliers</td></tr>
+							<tr class=restauration><td>2013</td><td>Serveur / Aide Cuisine </td><td>La Plage, Nyon</td></tr>
+							<tr class=restauration><td>2012 à 2013</td><td>Serveur / Aide Cuisine </td><td>Le Chausse-Coqs, Genève</td></tr>
+							<tr class=comm><td>2012</td><td>Webmaster</td><td>Association ADEPEDA, Rennes, France</td></tr>
+							<tr class=creation><td>2011</td><td>Assistant technicien théâtre </td><td>Centre Culturel Français, Damas, Syrie</td></tr>
+							<tr class=construct><td>2010 à 2013</td><td>Vendeur<br>Réimplantation de magasins </td><td>Migros s.a., Genève</td></tr>
+							<tr class=creation><td>2008 à 2014</td><td>Rénovation d’appartement </td><td>Particuliers</td></tr>
+							<tr class=comm><td>2006 & 2010</td><td>Animateur </td><td>Insieme / Cerebral, Genève</td></tr>
+							<tr class=creation><td>2009</td><td>Vidéo publicitaire </td><td>Montage et effets spéciaux</td></tr>
+							<tr class=creation><td>2008</td><td>Assistant technicien théâtre </td><td>Théâtre le Galpon, Genève</td></tr>
+							<tr class=restauration><td>2008</td><td>Billetterie / Serveur </td><td>Théâtre St-Gervais, Genève</td></tr>
+							<tr class=construct><td>2006 à 2007</td><td>Déménagements / Débarras </td><td>Ville de Genève et particuliers</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Activites_extra_professionnelles tbl">
+							<tr class="titre"><th colspan=3><div>Activités extra-professionnelles</div></th></tr>
+							<tr><td>Sport</td><td colspan=2>Parapente, randonnée, vélo, bivouac, AcroYoga</td></tr>
+							<tr><td>Hobbies</td><td colspan=2>Design, photographie, peinture, gastronomie</td></tr>
+							<tr><td>2016 2017</td><td>Développement Android</td>
+							<td>Instrument de navigation aérienne pour libéristes<br>
+							<a href="https://www.facebook.com/FlyOverlay/">facebook/FlyOverlay</a><br>
+							Découpeur d'image volumineuses en tuiles<br>
+							Lanceur d'application original<br>
+							</td></tr>
+							<tr><td>2014</td><td>Création site web</td><td>Compagnonnage végétal<br><a href="https://www.facebook.com/PotagerCompagnonnageVegetal/">facebook/PotagerCompagnonnageVegetal</a></td></tr>
+							<tr><td>2014</td>
+							<td>Exposition photo <br>"La Syrieavant la révolution" </td><td>Récolte de fonds pour Help Syrians</td>
+							</tr>
+							<tr><td>2011</td><td>Cours de français bénévoles </td><td>Croix Rouge, Genève</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="right maincontainer fullH">
+			<table class="mainright fullH">
+				<tr class="sectionwraper">
+					<td class="section center top">
+						<div class="me">
+							<img  class="profil_picture" src="fi_rnd_blue.png">
+							
+							<div class="nom">Grégoire Sailland</div>
+							<div class="birthday">26 / 07 / 1984</div>
+							<div class="contact leftalign">
+								<br><br>
+								<div class="tel">+41 76 268 49 93</div>
+								<div class="email">gregoiresailland@gmail.com</div>
+								<br><br>
+								<div class="adresse">Grand Rue 16<br>
+								1204 Genève<br>
+								Suisse
+								</div><br>
+							</div>
+							<div class="qualites">
+								Sens pratique et efficace<br>
+								Rigueur et dynamisme<br>
+								Ordonné et soigneux<br>
+								Attentif et avenant<br>
+								Volontaire
+							</div><br>
+							<div class="langues">
+								Français / anglais / allemand
+							</div><br>
+						</div>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td  class="section">
+						<table class="tbl">
+							<tr class="titre"><th colspan=3><div>Informatique</div></th></tr>
+							<tr><td colspan=2>Bureautique </td><td>Suite Office</td></tr>
+							<tr><td colspan=2>Infographie </td><td>Suite Adobe</td></tr>
+							<tr><td colspan=2>Modélisation 3D <br>& Animation </td><td>Blender 3D<br>Archicad<br>Maya</td></tr>
+							<tr><td colspan=2>Montage audio et vidéo </td><td>Adobe<br>Blender<br>Audacity</td></tr>
+							<tr><td colspan=2>Administration de serveur<br>et de base de données</td><td>phpMyAdmin<br>Scripts php personnels</td></tr>
+							<tr><td colspan=2>Programmation</td><td style="white-space:nowrap;">Adobe Dreamweaver<br>Notepad++<br>Android Studio<br>Eclipse</td></tr>
+						</table>
+						<table class="tbl">
+						<tr class="titre"><th colspan=3><div>Languages de Programmation</div></th></tr>
+						<tr><td colspan=2>SQL</td><td>PDO<br>MySQL<br>MySQLi</td></tr>
+						<tr><td colspan=2>Web</td><td>PHP<br> Javascript<br> CSS<br> HTML<br> XML<br> JQuery</td></tr>
+						<tr><td colspan=2>Android</td><td>Java</td></tr>
+						<tr><td colspan=2>Blender 3D</td><td>Python</td></tr>
+						<tr><td colspan=2>Gestionnaires de version</td><td>GIT<br>SVN<br>GitHub</td></tr>
+						<tr><td colspan=2>Autres languages approchés</td><td>C<br>C++<br>C#</td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+<div id="en" class="tabcontent">
+<table class="maintable fullW fullH">
+	<tr>
+		<td class="left maincontainer fullW fullH">
+			<table class="mainleft fullW fullH ">
+				<tr class="sectionwraper">
+					<td class="section">
+						<div class="emploirecherche center">Developer - Webmaster</div>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Formations_en_autodidacte tbl">
+							<tr class="titre"><th colspan=3><div>Self-taught courses</div></th></tr>
+							<tr><td>Webmaster</td><td colspan=2>Creating dynamic applications and websites</td></tr>
+							<tr><td>Android Development</td><td colspan=2>Apps & mini-games creation</td></tr>
+							<tr><td>Audio and video editing</td><td colspan=2>Participation in various artistic projects</td></tr>
+							<tr><td>3D animation</td><td colspan=2>Using Blender 3D to create icons, textures and designs, mapping, flyers ...</td></tr>
+						</table>
+						<table class="Formations tbl">
+							<tr class="titre"><th colspan=3><div>Formations</div></th></tr>
+							<tr><td>Illustration, Design</td><td colspan=2>Applied Arts EAAD, Geneva</td></tr>
+							<tr><td>Telemarketing</td><td colspan=2>Excelsia, Geneva</td></tr>
+							<tr><td>Economics, Law, Accounting</td><td colspan=2>Swiss Maturity, Moser, Geneva</td></tr>
+							<tr><td>Free flight license</td><td colspan=2>Paragliding training, Troinex, (Geneva)</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Experiences_professionnelles tbl">
+							<tr class="titre"><th colspan=3><div>Professional experiences</div></th></tr>
+							<tr class=comm><td>2016 to 2017</td><td>Cyclomessagerie</td><td>Krick, Geneva</td></tr>
+							<tr class=restauration><td>2016</td><td>Waiter / Cook's assistant</td><td>L'Alhambar, Geneva</td></tr>
+							<tr class=restauration><td>2015</td><td>Waiter / Cook's assistant</td><td>Bains des pâquis, Geneva</td></tr>
+							<tr class=construct><td>2015</td><td>Fruit and Vegetable Preparer</td><td>Migros s.a., Geneva</td></tr>
+							<tr class=restauration><td>2014</td><td>Waiter</td><td>La Boursière, Geneva</td></tr>
+							<tr class=restauration><td>2014</td><td>Préparations et Cuissons </td><td>Tearoom Le doux péché, Geneva</td></tr>
+							<tr class=comm><td>2014 to 2016</td><td>Distribution of Flyers</td><td>Bâtie-Festival, Geneva</td></tr>
+							<tr class=creation><td>2014</td><td>Carpenter / Joinery</td><td>Telqiu Nusret, Geneva</td></tr>
+							<tr class=creation><td>2013 to 2014</td><td>Manufacture of customized furniture</td><td>Individuals</td></tr>
+							<tr class=creation><td>2013 to 2015</td><td>Garden maintenance</td><td>Individuals</td></tr>
+							<tr class=restauration><td>2013</td><td>Waiter / Cook's assistant</td><td>La Plage, Nyon</td></tr>
+							<tr class=restauration><td>2012 to 2013</td><td>Waiter / Cook's assistant</td><td>Le Chausse-Coqs, Geneva</td></tr>
+							<tr class=comm><td>2012</td><td>Webmaster</td><td>Association ADEPEDA, Rennes, France</td></tr>
+							<tr class=creation><td>2011</td><td>Assistant Theater Technician</td><td>French Cultural Center, Damascus, Syria</td></tr>
+							<tr class=construct><td>2010 to 2013</td><td>Seller / Reimplantation of stores</td><td>Migros s.a., Geneva</td></tr>
+							<tr class=creation><td>2008 to 2014</td><td>Apartment renovation</td><td>Individuals</td></tr>
+							<tr class=comm><td>2006 & 2010</td><td>Host</td><td>Insieme / Cerebral, Geneva</td></tr>
+							<tr class=creation><td>2009</td><td>Advertising</td><td>Video editing and special effects</td></tr>
+							<tr class=creation><td>2008</td><td>Assistant theater technician</td><td>Théâtre le Galpon, Geneva</td></tr>
+							<tr class=restauration><td>2008</td><td>Ticketing / Waiter</td><td>Théâtre St-Gervais, Geneva</td></tr>
+							<tr class=construct><td>2006 to 2007</td><td>Removals / Storeroom</td><td>City of Geneva and individuals</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td class="section">
+						<table class="Activites_extra_professionnelles tbl">
+							<tr class="titre"><th colspan=3><div>Extra-professional activities</div></th></tr>
+							<tr><td>Sport</td><td colspan=2>Paragliding, hiking, biking, bivouac, AcroYoga</td></tr>
+							<tr><td>Hobbies</td><td colspan=2>Design, photography, painting, gastronomy</td></tr>
+							<tr><td>2016 2017</td><td>Android Development</td><td>Free flight air navigation instrument<br>
+							<a href="https://www.facebook.com/FlyOverlay/">facebook/FlyOverlay</a><br>
+							Large image tile cutter<br>
+							Original Application Launcher
+							</td></tr>
+							<tr><td>2014</td><td>Website creation</td><td>Vegetable company<br><a href="https://www.facebook.com/PotagerCompagnonnageVegetal/">facebook/PotagerCompagnonnageVegetal</a></td></tr>
+							<tr><td>2014</td>
+							<td>Photo Exhibition <br>"Syria Before the revolution "</td><td>Fundraiser for Help Syrians</td>
+							</tr>
+							<tr><td>2011</td>
+							<td>Volunteer French Teacher</td><td>Red Cross, Geneva</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="right maincontainer fullH">
+			<table class="mainright fullH">
+				<tr class="sectionwraper">
+					<td class="section center top">
+						<div class="me">
+							<img  class="profil_picture" src="fi_rnd_blue.png">
+							
+							<div class="nom">Grégoire Sailland</div>
+							<div class="birthday">26 / 07 / 1984</div>
+							<div class="contact leftalign">
+								<br><br>
+								<div class="tel">+41 76 268 49 93</div>
+								<div class="email">gregoiresailland@gmail.com</div>
+								<br><br>
+								<div class="adresse">Grand Rue 16<br>
+								1204 Geneva<br>
+								Switzerland
+								</div><br>
+							</div>
+							<div class="qualites">
+								Practical and efficient<br>
+								Rigor and dynamism<br>
+								Orderly and Careful<br>
+								Attentive and supportive<br>
+								Voluntary<br>
+							</div><br>
+							<div class="langues">
+								French / English / Deutch
+							</div><br>
+						</div>
+					</td>
+				</tr>
+				<tr class="sectionwraper">
+					<td  class="section">
+						<table class="tbl">
+							<tr class="titre"><th colspan=3><div>Computing</div></th></tr>
+							<tr><td colspan=2>Office</td><td>Office Suite</td></tr>
+							<tr><td colspan=2>Computer graphics</td><td>Adobe Suite</td></tr>
+							<tr><td colspan=2>3D modeling<br>& Animation </td><td>Blender 3D<br>Archicad<br>Maya</td></tr>
+							<tr><td colspan=2>Audio & Video<br>Editing</td><td>Adobe<br>Blender<br>Audacity</td></tr>
+							<tr><td colspan=2>Server & database<br>Administration</td><td>phpMyAdmin<br>Personal php scripts</td></tr>
+							<tr><td colspan=2>Programming</td><td style="white-space:nowrap;">Adobe Dreamweaver<br>Notepad++<br>Android Studio<br>Eclipse</td></tr>
+						</table>
+						<table class="tbl">
+						<tr class="titre"><th colspan=3><div>Languages de Programmation</div></th></tr>
+						<tr><td colspan=2>SQL</td><td>PDO<br>MySQL<br>MySQLi</td></tr>
+						<tr><td colspan=2>Web</td><td>PHP<br> Javascript<br> CSS<br> HTML<br> XML<br> JQuery</td></tr>
+						<tr><td colspan=2>Android</td><td>Java</td></tr>
+						<tr><td colspan=2>Blender 3D</td><td>Python</td></tr>
+						<tr><td colspan=2>Gestionnaires de version</td><td>GIT<br>SVN<br>GitHub</td></tr>
+						<tr><td colspan=2>Autres languages approchés</td><td>C<br>C++<br>C#</td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+<div id="portfolio" class="tabcontent">
+	<a class="card" href="https://www.facebook.com/FlyOverlay/">
+	  <img src="https://scontent-frt3-2.xx.fbcdn.net/v/t31.0-8/19944620_740977776107772_794588108764893877_o.png?oh=db79e7ecb277beb0d96e186b78e18803&oe=59F9B875" alt="Preview" style="width:100%">
+	  <div class="container androidbf">
+		<div class="rightinfo">(work in progress)</div>
+		<h4><b>AirView FlyOverlay</b></h4>
+		<p>Free flight navigation Android application </p>
+	  </div>
+
+	</a>
+	<a class="card" href="https://www.facebook.com/PotagerCompagnonnageVegetal/" target="_blank">
+	  <img src="https://scontent-frt3-2.xx.fbcdn.net/v/t31.0-8/10648654_348173722027530_1413474392065358122_o.jpg?oh=e8fe1dd0641d79bb2ffc66d7a67f66af&oe=59C55D34" alt="Preview" style="width:100%">
+	  <div class="container webbf">
+		<div class="rightinfo">(offline: no money for server)</div>
+		<h4><b>Potage</b></h4> 
+		<p>Computer Assisted Gardening planning web application </p> 
+	  </div>
+	</a>
+	<div class="card" target="_blank">
+		  <img src="Alive Lauuncher.png" alt="Preview" style="width:50%">
+		  <div class="explain">
+			<p>⇵ pitch tilt of the device scrolls folders vertically</p> 
+			<p>↺ ↻ roll  tilt of the device  scrolls icones in folders horizontally</p> 
+			<p></p> <p>
+				Folders are scrollviews and the names of folers are the scrollbars.
+			</p> 
+			<p>
+				By maintaining an icone you can move it between folders while scrolling by tilting the device
+			</p> 
+		  </div>
+		  <div class="container androidbf">
+			<div class="rightinfo">(work in progress)</div>
+			<h4><b>Alive Lauuncher</b></h4> 
+			<p>Original Android applications launcher using sensors to scroll icones without toutching the screen</p> 
+		  </div>
+	</div>
+	<div class="card" target="_blank">
+		<img src="gebco.png" alt="Preview" style="width:100%">
+		<div class="container androidbf">
+			<div class="rightinfo">(for map application)</div>
+			<h4><b>Big image tiler</b></h4>
+			<p>Android application to convert big images to small tiles</p> 
+		</div>
+	</div>
+	<div class="card" target="_blank">
+		<img src="inscriptions.png" alt="Preview" style="width:100%">
+		<div class="rightinfo">(multi user)</div>
+		<div class="container webbf">
+			<h4><b>Dynamic Web Calendar</b></h4>
+			<p>Web application to subscribe for lessons at a paragliding school</p>
+			<p>I designed that application for a paragliding school in order students could subscribe to lessons letting them see the remaining places and for teatchers to manage there resources.</p>
+			<p>Totally written in PHP using date/time functions, you can easily see who is registered.</p>
+			<p>The design is not really good because I did it a long time ago at my begining of studies and the purpose was more the usability and the original purpose.</p>
+			<p>Today I could do really better work.</p>
+	  </div>
+	</div>
+</div>
+<div id="why" class="tabcontent">
+	<p>Travailler pour Google serait pour moi une immense joie.</p>
+	<p>Je m'investirai entièrement avec pour mission d'apporter aux utilisateurs des outils intuitifs et révolutionnaires.</p>
+	<p>Cela me permettra de mettre mes capacités au service d'un employeur sérieux et stable, de mettre mes compétences en action au sein d'une structure épanouissante.</p>
+	<p>Je travaille très bien seul, mais également en équipe et je suis confronté à la difficulté de projets de trop grande empleur pour être menés à bien en tant qu'individu. Travailler au sein d'équipes chez Google me permettra d'apprendre plus et de créer mieux qu'en freelance solitaire.</p>
+	<p>J'ai besoin d'une structure pour m'épanouir et je n'ai pas actuellement dans ma vie de proches partageant mon intérêt pour le développement d'applications.</p>
+	<p>Je n'ai pas fait d'études scolaires dans le domaine de la programmation et n'ai donc pas de réseau me permettant d'échanger sur le développement.</p>
+	<p>Je n'ai pour seuls atouts que mon ingéniosité, ma passion et les moteurs de recherches pour évoluer dans ce domaine.</p>
+	<p>Je suis très polyvalent, presque trop. Cela m'a permis de rebondir dans ma carière lorsqu'il était temps pour moi de changer d'emploi et de m'orienter vers des métiers très différents. Je ne me contente plus de ces petits emplois et je souhaite à présent me spécialiser dans le développement.</p>
+	<p>Je ne vois pas ces expériences passées comme une perte de temps car elles m'ont beaucoup appris sur moi même et j'y ai développé des qualités très appréciables. Dans chacun de mes projets de développement, il y a un peu du serveur, un peu du peintre, un peu du menuisier, un peu du cuisinier et un peu de l'enfant qui rêve.</p>
+
+
+From what I understand about the job, it's a position that requires a lot of fast activity during the day, and that's the kind of job I thrive in. I love to stay busy and wear a lot of hats. Is my assessment of the environment on target?
+<br><br>
+What if I share my impression of the role and see if I've got a good handle on it — is that okay? Great! Well, it seems that this job is very connected to the inventory system and your part-number database.
+<br><br>
+It sounds like your new hire will go to weekly Production meetings and make sure that every part you require for the next week's production schedule is on hand, or if it isn't, to fix that problem! When suppliers switch out parts or re-number them, this person will make sure the database gets updated. Did I cover the most important points?
+<br><br>
+Honestly I'd have a hard time saying truthfully "You should hire me!" because you are going to meet or have already met the other candidates, and of course I haven't met them.
+<br><br>
+I would only say that I'm excited about your company and its prospects,  I've been working in Inventory Control and Production Planning very successfully and I love it, and if I seem like the right person for the job I'd be very excited to continue the conversation.
+<br><br>
+If I come and work here it will be my third job in Inventory Control. The reason I like Inventory Control and Production Planning is because it deals with real things — parts and finished products — not strictly numbers in spreadsheets.
+<br><br>
+I like to work with real things. I like to organize inventory systems and see products coming off the assembly line. That's why I'm drawn to manufacturing jobs.
+<br><br>
+Earlier in our conversation you mentioned that it's a challenge keeping parts on hand for products that you only build in small quantities. In my last job I set up a system with the suppliers for our low-quantity parts, because it would be very easy for us to slip off those suppliers' radar screens.
+<br><br>
+I maintained a dashboard that showed us when we were running low on any of those low-quantity parts because we needed more lead time to get those orders turned around and delivered to us. As a result of the dashboard, we were seldom if ever out of stock on those products. I love to spot the most time-consuming and irritating production problem in any company and solve it first.
+<br><br><br><br><br>
+http://www.hyrell.com/blog/why-should-i-work-for-you<br>
+In quite a few recent blog posts (here, here and here), the Hyrell team and I have taken a look inside the interview process. While researching and putting this information together, we discussed many good questions that can/should be asked during a typical job interview.  And, we also noted that the candidate should have their own interview questions in order to get a better sense of the company, the culture, and what kind of fit they will be in the organization. 
+<br><br>
+Coincidentally, I had recent conversation with a well-qualified job-seeking friend & colleague. We talked about the job search, the interview process, and what was the right move for him.  We began to discuss why he would work for any of the companies that were interested in him, and it became clear to me that we shared the same view that many qualified applicants are beginning to embrace: “Why Should I Work For YOU?”
+<br><br>
+Sure, money and health benefits have always been a key driver in the decision to accept or reject a job - and for many people that is still the key decision point. However, as their careers become their lives, there are a growing number of people that want to ensure the proper work-life-balance and ultimately find fulfilment. 
+<br><br>
+Take my friend for example: He is exceptionally (and somewhat uniquely) qualified for the career path he is on. But it’s simply not just about the money for him. As he told me, “All the money in the world isn’t worth it if I am not enjoying with what I am doing.” — maybe that alone is what makes him unique.  I pressed to see what would make a job worth it — better medical benefits? Free beer Fridays? Access to the corporate jet? (There was no jet.)  It was none of those things. 
+<br><br>
+It came to down to whether the company was a good fit for his personality, his interests, and his work ethic/style.  He wanted to work at a place that challenged him every day. Where he wasn’t the smartest guy in the room, but still got to be a leader and teacher. He wanted to work at place that thrived on creativity, teamwork, and learning, but also gave him the freedom to work autonomously to get the job done. He wanted to work somewhere that collaborated well, but didn’t require 5 staff meetings and 6 conference calls a week to do it. He wanted to have the freedom to work from a coffee shop, the park, or even from home in his PJs. He’s not a typical idealist (or even a millennial for that matter), he’s just a guy who knows how to do his job really well and feels he should be able to have a choice in where he does this job and who he does it for.
+<br><br>
+I told him he was looking for a needle in a haystack - that companies like that rarely exist outside the pages of Inc. Magazine - but it stuck with me over the next few days following our conversation.
+<br><br>
+And so I asked around - friends, co-workers, mentors, interns - it didn’t matter, I was curious. Overwhelmingly, the responses (while not exactly as lofty as my friend) were very similar. People wanted to feel a connection to the place that they worked, the people they worked with and the job that they were asked to do.  So I took to this blog to remind hiring mangers: The next time you ask a candidate why you should hire them, keep in mind, they’re probably trying to figure out why they should work for YOU. 
+<br><br><br><br>
+</div>
+	
+	<div id="hire" class="tabcontent">
+		<div class="herocontainer">
+			<div class="hero-image"><br>
+			  <div class="hero-text"><br>
+				<h1 style="font-size:50px">I am John Doe</h1><br><br><br>
+				<p>And I'm a Photographer</p><br><br>
+				<button>Hire me</button><br><br><br>
+			  </div>
+			</div>
+		</div>
+		gregoiresailland@gmail.com
+	</div>
+	
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <button class="sidetablinks" onclick="openTab(event, 'en')" id="about0">English</button>
+  <button class="sidetablinks" onclick="openTab(event, 'fr')" id="about1">Français</button>
+  <button class="sidetablinks" onclick="openTab(event, 'portfolio')" id="blog">Portfolio</button>
+  <button class="sidetablinks" onclick="openTab(event, 'why')" id="projects">Why Should I work for you?</button>
+  <button class="sidetablinks" onclick="openTab(event, 'hire')" id="contact">Hire me!</button>
+</div>
+
+<script>
+function openTab(evt, cnt) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    if(document.getElementById(cnt)!=undefined)document.getElementById(cnt).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+<script>
+function loadit() {
+	var link;
+    var links=document.getElementsByTagName("a");
+	for(link in links)links[link].target = "_blank";
+	
+}loadit();
+</script>
+
+</body>
+</html>
